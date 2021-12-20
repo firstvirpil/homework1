@@ -9,7 +9,7 @@ from pages.start_page import StartPage
 class TestStartPage(BaseTest):
     @pytest.fixture(scope='function')
     def start_page(self):
-        driver = webdriver.Chrome(executable_path='drivers/chromedriver')
+        driver = webdriver.Chrome(executable_path='drivers/chromedriver.exe')
         driver.implicitly_wait(time_to_wait=5)
         # Open start page
         driver.get(start_page_constants.START_PAGE_URL)
@@ -27,12 +27,12 @@ class TestStartPage(BaseTest):
         """
 
         # Clear password and login fields
-        start_page.fill_sign_in_fields(username="", password="")
+        start_page.fill_sign_in_fields(username="ttty", password="")
 
         # Verify error message
         start_page.verify_invalid_credentials()
 
-    def test_invalid_credentials(self, start_page):
+'''    def test_invalid_credentials(self, start_page):
         """
         - Open start page
         - Clear login and password fields
@@ -46,3 +46,4 @@ class TestStartPage(BaseTest):
 
         # Verify error message
         start_page.verify_invalid_credentials()
+'''

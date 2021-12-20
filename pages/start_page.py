@@ -21,10 +21,12 @@ class StartPage(BasePage):
         self.wait_until_click(locator_type=By.XPATH, locator=start_page_constants.SIGN_IN_BUTTON_ENTER_XPATH)
         self.logger.debug('Clicked on sign up')
 
-        self.wait_until_send_keys(locator_type=By.XPATH, locator=start_page_constants.SIGN_IN_LOGIN_FIELD_XPATH, data=username)
+        self.wait_until_send_keys(locator_type=By.XPATH, locator=start_page_constants.SIGN_IN_LOGIN_FIELD_XPATH,
+                                  data=username)
         self.logger.info("Set login value: '%s'", username)
 
-        self.wait_until_send_keys(locator_type=By.XPATH, locator=start_page_constants.SIGN_IN_PASSWORD_FIELD_XPATH, data=password)
+        self.wait_until_send_keys(locator_type=By.XPATH, locator=start_page_constants.SIGN_IN_PASSWORD_FIELD_XPATH,
+                                  data=password)
         self.logger.debug("Set password value: '%s'", password)
 
         # Click on Sign In
@@ -33,6 +35,7 @@ class StartPage(BasePage):
 
     def verify_invalid_credentials(self):
         # Check error message on invalid credentials
-        error_message = self.wait_until_find(locator_type=By.XPATH, locator=start_page_constants.INVALID_LOGIN_ERROR_XPATH)
-        assert error_message.text == 'Error', f"Actual: {error_message.text}"
+        error_message = self.wait_until_find(locator_type=By.XPATH,
+                                             locator=start_page_constants.INVALID_PASSWORD_ERROR_XPATH)
+        assert error_message.text == 'Неверный пароль. Возможно, Вы забыли пароль?', f"Actual: {error_message.text}"
         self.logger.debug('Error message was verified')
